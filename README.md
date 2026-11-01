@@ -1,6 +1,6 @@
 # BERT and RoBERTa for Automatic Ticket Classification
 
-This repository compares two Transformer-based approaches for assigning customer complaint text to product categories. Both implementations use CFPB complaint data prepared by the companion [ticket classification project](https://github.com/gizemnurbektas/Automatic-ticket-classification-RNN-LSTM).
+This repository compares two Transformer-based approaches for assigning customer complaint text to product categories. Both implementations use CFPB complaint data prepared for the companion [ticket classification project](https://github.com/gizemnurbektas/Automatic-ticket-classification-RNN-LSTM).
 
 ## Models
 
@@ -13,18 +13,18 @@ These are Colab-exported source files without `.py` extensions. They include Col
 
 ## Dataset
 
-The code expects `filtered_complaints.json` with complaint text in `complaint_what_happened` and category labels in `product`. This processed file is not included in the repository; provide it in the Colab runtime before running either implementation.
+The included `filtered_complaints.json` contains 8,308 CFPB consumer complaint narratives across 18 product categories, with up to 500 examples per category. Each record has `complaint_what_happened` and `product` fields, matching the inputs expected by the code. Email addresses, URLs, phone/long-number patterns, and source `XXXX` redactions are masked in this shared sample.
 
-A related source is [Consumer Complaints Database on Kaggle](https://www.kaggle.com/datasets/sebastienverpile/consumercomplaintsdata), which is listed as **CC0 Public Domain** and sourced from the CFPB. Its original `Consumer_Complaints.csv` is about 413.5 MB and uses the column names `Consumer complaint narrative` and `Product`; it needs filtering and field mapping to create the JSON structure expected here. The full source CSV is not bundled in this repository.
+The sample was derived from the [Consumer Complaints Database on Kaggle](https://www.kaggle.com/datasets/sebastienverpile/consumercomplaintsdata), listed as **CC0 Public Domain** and sourced from the CFPB. The original `Consumer_Complaints.csv` is about 413.5 MB; only a balanced, filtered subset is included here. See the Kaggle page for provenance and source details.
 
 ## Run in Google Colab
 
 1. Open `Bert` or `Roberta` in Colab.
 2. Install the packages required by that implementation.
-3. Provide a processed `filtered_complaints.json` file and run the cells from top to bottom.
-4. Review the printed test classification report and training plots.
+3. Download `filtered_complaints.json` from this repository and upload it when the code requests the file.
+4. Run the cells from top to bottom and review the printed test classification report and training plots.
 
-A GPU is recommended for fine-tuning. Runtime, package versions, available memory, class distribution, and data split can affect execution and results.
+A GPU is recommended for fine-tuning. Runtime, package versions, available memory, data split, and class distribution can affect execution and results.
 
 ## Evaluation
 
